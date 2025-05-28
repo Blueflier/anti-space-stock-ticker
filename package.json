@@ -1,7 +1,7 @@
 {
   "name": "integration-1",
   "scripts": {
-    "dev": "tsx watch src/index.tsx",
+    "dev": "NODE_OPTIONS='--max-http-header-size=32768' tsx watch src/index.tsx",
     "db:generate": "drizzle-kit generate",
     "db:up": "drizzle-kit up"
   },

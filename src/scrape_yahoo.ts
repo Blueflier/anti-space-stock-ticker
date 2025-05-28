@@ -1,16 +1,23 @@
-import axios from 'axios';
 import * as cheerio from 'cheerio';
-type StockData = { price: string, change: string } | null
 
-async function getStockData(ticker: string): Promise<StockData | null> {
+export type StockData = { price: string, change: string } | null
+
+export async function getStockData(ticker: string): Promise<StockData | null> {
   const url = `https://finance.yahoo.com/quote/${ticker}`;
 
   try {
-    const { data: html } = await axios.get(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0',
-      },
+    const response = await fetch(url, {
+      // headers: {
+      //   'User-Agent': 'Mozilla/5.0',
+      // },
     });
+    console.log("response", response);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const html = await response.text();
 
     const $ = cheerio.load(html);
 
@@ -31,4 +38,4 @@ async function getStockData(ticker: string): Promise<StockData | null> {
 
 }
 
-console.log(await getStockData('AAPL')); // You can replace this with CLI input
+// console.log(await getStockData('AAPL')); // You can replace this with CLI input

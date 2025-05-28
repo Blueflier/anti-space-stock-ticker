@@ -38,3 +38,26 @@ export const say_nickname: AntispaceAppFunction<"say_nickname"> = {
     },
   },
 }
+
+export const add_stock: AntispaceAppFunction<
+  "add_stock",
+  {
+    ticker: string
+  }
+> = {
+  type: "function",
+  function: {
+    name: "add_stock",
+    description: "Add a new stock to the dashboard",
+    parameters: {
+      type: "object",
+      properties: {
+        ticker: {
+          type: "string",
+          description: "Stock ticker symbol (e.g., AAPL, GOOGL)",
+        },
+      },
+      required: ["ticker"],
+    },
+  },
+}

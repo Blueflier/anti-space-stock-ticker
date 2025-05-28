@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.say_nickname = exports.set_nickname = void 0;
+exports.add_stock = exports.say_nickname = exports.set_nickname = void 0;
 /**
  * Function to set the user's nickname
  */
@@ -30,6 +30,23 @@ exports.say_nickname = {
             type: "object",
             properties: {},
             required: [],
+        },
+    },
+};
+exports.add_stock = {
+    type: "function",
+    function: {
+        name: "add_stock",
+        description: "Add a new stock to the dashboard",
+        parameters: {
+            type: "object",
+            properties: {
+                ticker: {
+                    type: "string",
+                    description: "Stock ticker symbol (e.g., AAPL, GOOGL)",
+                },
+            },
+            required: ["ticker"],
         },
     },
 };
